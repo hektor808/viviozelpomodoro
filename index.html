@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIVILYRICA | OPIUM MODE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Metal+Mania&family=Nosifer&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        /* OPIUM AESTHETIC CSS */
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'Share Tech Mono', monospace;
+            overflow-x: hidden;
+            cursor: crosshair;
+        }
+
+        /* Grainy Overlay Effect */
+        .noise {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 50;
+            opacity: 0.07;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIj48ZmlsdGVyIGlkPSJ4Ij48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iMC42NSIgbnVtT2N0YXZlcz0iMyIgc3RpdGNoVGlsZXM9InN0aXRjaCIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCN4KSIvPjwvc3ZnPg==');
+        }
+
+        .gothic-font {
+            font-family: 'Metal Mania', cursive;
+            letter-spacing: 2px;
+        }
+
+        .drippy-font {
+            font-family: 'Nosifer', cursive;
+        }
+
+        /* Glitch Effect Animation */
+        @keyframes glitch {
+            0% { transform: translate(0) }
+            20% { transform: translate(-2px, 2px) }
+            40% { transform: translate(-2px, -2px) }
+            60% { transform: translate(2px, 2px) }
+            80% { transform: translate(2px, -2px) }
+            100% { transform: translate(0) }
+        }
+
+        .glitch-text:hover {
+            animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
+            color: #ff0000;
+            text-shadow: 2px 2px #333;
+        }
+
+        /* Vampire Red Glow */
+        .vamp-border {
+            border: 1px solid #333;
+            transition: all 0.3s ease;
+        }
+        
+        .vamp-border:hover, .active-mode {
+            border-color: #ff0000;
+            box-shadow: 0 0 15px #ff0000, inset 0 0 10px #800000;
+        }
+
+        .timer-display {
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        /* Star Symbols */
+        .star-spin {
+            display: inline-block;
+            animation: spin 10s linear infinite;
+        }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #000; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333; 
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ff0000; 
+        }
+
+        .btn-control {
+            background: black;
+            border: 1px solid white;
+            transition: 0.2s;
+        }
+        .btn-control:hover {
+            background: #ff0000;
+            color: black;
+            border-color: #ff0000;
+            font-weight: bold;
+        }
+        
+        .todo-item {
+            border-bottom: 1px solid #333;
+        }
+        .todo-item.completed span {
+            text-decoration: line-through;
+            color: #666;
+        }
+        
+        .hidden { display: none; }
+
+        .profile-img-container {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            margin: 0 auto;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid #ff0000;
+            box-shadow: 0 0 15px #ff0000;
+        }
+        .profile-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(50%) contrast(120%);
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen selection:bg-red-600 selection:text-black">
+
+    <div class="noise"></div>
+
+    <!-- Main Container -->
+    <div class="z-10 w-full max-w-md p-6 flex flex-col items-center gap-8">
+        
+        <!-- Header -->
+        <header class="text-center space-y-4">
+            <div class="profile-img-container">
+                <img src="https://pbs.twimg.com/profile_images/1998144818485055488/SOFCE4LJ_400x400.jpg" alt="Vivi Profil Fotoğrafı">
+            </div>
+            <h2 class="text-red-600 text-sm tracking-[0.5em] uppercase animate-pulse">VIVI'S AESTHETIC</h2>
+            <h1 class="text-6xl md:text-7xl gothic-font text-white glitch-text cursor-default">
+                VIVILYRICA
+            </h1>
+            <p class="text-xs text-gray-500 tracking-widest uppercase">★ UYAN ARTIK ★ KAOSA ODAKLAN ★</p>
+        </header>
+
+        <!-- Timer Card -->
+        <div class="w-full bg-black/50 backdrop-blur-sm border border-gray-800 p-8 rounded-none relative overflow-hidden group">
+            <!-- Decorative Corners -->
+            <div class="absolute top-0 left-0 w-2 h-2 border-t border-l border-white"></div>
+            <div class="absolute top-0 right-0 w-2 h-2 border-t border-r border-white"></div>
+            <div class="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-white"></div>
+            <div class="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-white"></div>
+
+            <!-- Mode Selector -->
+            <div class="flex justify-center gap-4 mb-8 text-xs md:text-sm">
+                <button onclick="setMode('pomodoro')" id="btn-pomodoro" class="vamp-border px-4 py-2 uppercase tracking-widest text-gray-400 hover:text-white active-mode">KİLİTLEN</button>
+                <button onclick="setMode('shortBreak')" id="btn-short" class="vamp-border px-4 py-2 uppercase tracking-widest text-gray-400 hover:text-white">NEFES</button>
+                <button onclick="setMode('longBreak')" id="btn-long" class="vamp-border px-4 py-2 uppercase tracking-widest text-gray-400 hover:text-white">KAYBOL</button>
+            </div>
+
+            <!-- Timer Display -->
+            <div class="text-center mb-8 relative">
+                <div id="timer" class="text-7xl md:text-8xl font-bold tracking-tighter timer-display">25:00</div>
+                <div class="text-red-600 text-xs mt-2 uppercase tracking-[0.3em]" id="status-text">MODA GİR</div>
+            </div>
+
+            <!-- Controls -->
+            <div class="flex justify-center gap-6">
+                <button onclick="toggleTimer()" id="startBtn" class="btn-control px-8 py-3 uppercase tracking-widest text-sm">BAŞLAT</button>
+                <button onclick="resetTimer()" class="btn-control px-6 py-3 uppercase tracking-widest text-sm text-red-500 border-red-900">BAŞA SAR</button>
+            </div>
+        </div>
+
+        <!-- Task List (Simple) -->
+        <div class="w-full mt-4">
+            <div class="flex justify-between items-end mb-4 border-b border-red-900/50 pb-2">
+                <h3 class="gothic-font text-2xl text-gray-300">OBSESYONLAR</h3>
+                <span class="text-xs text-red-600 uppercase tracking-widest">LİSTE</span>
+            </div>
+            
+            <div class="flex gap-2 mb-4">
+                <input type="text" id="taskInput" placeholder="Yeni bir obsesyon ekle..." 
+                    class="flex-1 bg-black border border-gray-700 p-2 text-sm text-white focus:outline-none focus:border-red-600 placeholder-gray-700 font-mono uppercase">
+                <button onclick="addTask()" class="bg-white text-black px-4 font-bold hover:bg-red-600 hover:text-white transition text-xl">+</button>
+            </div>
+
+            <ul id="taskList" class="space-y-2 text-sm uppercase tracking-wider">
+                <!-- Tasks will appear here -->
+                <li class="todo-item flex justify-between items-center py-2 group">
+                    <span onclick="this.parentElement.classList.toggle('completed')" class="cursor-pointer group-hover:text-red-500 transition">★ DÜNYAYI YÖNET</span>
+                    <button onclick="this.parentElement.remove()" class="text-gray-800 hover:text-red-600">×</button>
+                </li>
+            </ul>
+        </div>
+
+        <footer class="mt-12 text-center text-[10px] text-gray-700 uppercase tracking-[0.5em]">
+            <span class="star-spin">★</span> 2025 OPIUM <span class="star-spin">★</span>
+        </div>
+    </div>
+
+    <!-- Audio (Simple Beeps generated by JS to avoid external files) -->
+    <script>
+        // Configuration
+        const MODES = {
+            pomodoro: 25 * 60,
+            shortBreak: 5 * 60,
+            longBreak: 15 * 60
+        };
+        
+        let timeLeft = MODES.pomodoro;
+        let timerId = null;
+        let currentMode = 'pomodoro';
+        let isRunning = false;
+
+        const timerDisplay = document.getElementById('timer');
+        const startBtn = document.getElementById('startBtn');
+        const statusText = document.getElementById('status-text');
+        const buttons = {
+            pomodoro: document.getElementById('btn-pomodoro'),
+            shortBreak: document.getElementById('btn-short'),
+            longBreak: document.getElementById('btn-long')
+        };
+
+        // Beep Sound Synthesis
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        function playBeep(type = 'normal') {
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+            const oscillator = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+            
+            if (type === 'finish') {
+                // Distorted Guitar-ish sound
+                oscillator.type = 'sawtooth';
+                oscillator.frequency.setValueAtTime(110, audioCtx.currentTime);
+                oscillator.frequency.exponentialRampToValueAtTime(55, audioCtx.currentTime + 0.5);
+                gainNode.gain.setValueAtTime(0.2, audioCtx.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.5);
+                oscillator.start();
+                oscillator.stop(audioCtx.currentTime + 0.5);
+            } else {
+                // Click sound
+                oscillator.type = 'square';
+                oscillator.frequency.setValueAtTime(800, audioCtx.currentTime);
+                gainNode.gain.setValueAtTime(0.05, audioCtx.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
+                oscillator.start();
+                oscillator.stop(audioCtx.currentTime + 0.1);
+            }
+        }
+
+        function formatTime(seconds) {
+            const m = Math.floor(seconds / 60);
+            const s = seconds % 60;
+            return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+        }
+
+        function updateDisplay() {
+            timerDisplay.textContent = formatTime(timeLeft);
+            document.title = `${formatTime(timeLeft)} | VIVILYRICA`;
+        }
+
+        function setMode(mode) {
+            pauseTimer();
+            currentMode = mode;
+            timeLeft = MODES[mode];
+            
+            // UI Updates
+            Object.values(buttons).forEach(btn => btn.classList.remove('active-mode'));
+            buttons[mode].classList.add('active-mode');
+            
+            if(mode === 'pomodoro') statusText.textContent = "KİLİTLENME VAKTİ";
+            else if(mode === 'shortBreak') statusText.textContent = "BİRAZ NEFES";
+            else statusText.textContent = "BİRAZ YOK OL";
+
+            updateDisplay();
+        }
+
+        function toggleTimer() {
+            if (isRunning) {
+                pauseTimer();
+            } else {
+                startTimer();
+            }
+        }
+
+        function startTimer() {
+            if (isRunning) return;
+            
+            isRunning = true;
+            startBtn.textContent = 'BEKLE';
+            startBtn.classList.add('bg-white', 'text-black');
+            statusText.textContent = currentMode === 'pomodoro' ? "SAKIN DURMA" : "RAHATLA";
+            
+            timerId = setInterval(() => {
+                timeLeft--;
+                updateDisplay();
+                
+                if (timeLeft <= 0) {
+                    pauseTimer();
+                    playBeep('finish');
+                    statusText.textContent = "BİTTİ.";
+                    statusText.classList.add('text-white');
+                    setTimeout(() => statusText.classList.remove('text-white'), 1000);
+                }
+            }, 1000);
+        }
+
+        function pauseTimer() {
+            isRunning = false;
+            clearInterval(timerId);
+            startBtn.textContent = 'BAŞLAT';
+            startBtn.classList.remove('bg-white', 'text-black');
+        }
+
+        function resetTimer() {
+            pauseTimer();
+            timeLeft = MODES[currentMode];
+            updateDisplay();
+            statusText.textContent = "BAŞA SARILDI";
+        }
+
+        // Task List Logic
+        const taskInput = document.getElementById('taskInput');
+        const taskList = document.getElementById('taskList');
+
+        function addTask() {
+            const text = taskInput.value.trim();
+            if (!text) return;
+
+            const li = document.createElement('li');
+            li.className = 'todo-item flex justify-between items-center py-2 group';
+            li.innerHTML = `
+                <span onclick="this.parentElement.classList.toggle('completed')" class="cursor-pointer group-hover:text-red-500 transition">★ ${text}</span>
+                <button onclick="this.parentElement.remove()" class="text-gray-800 hover:text-red-600">×</button>
+            `;
+            
+            taskList.appendChild(li);
+            taskInput.value = '';
+        }
+
+        taskInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') addTask();
+        });
+
+        // Init
+        updateDisplay();
+    </script>
+</body>
+</html>
